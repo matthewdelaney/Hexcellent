@@ -23,21 +23,23 @@
  */
 function Hexcellent(aCellSize, aWidth, aHeight, aLeft, aTop) {
 	var grid = new Array();
-	var cellSize = aCellSize
+	var cellSize = aCellSize // The width of a single hexagonal cell
 	var gridWidth = aWidth;
 	var gridHeight = aHeight;
 	var left = aLeft;
 	var top = aTop;
 
+	// Create a dummy hexagon to get offset-values for positioning
 	var h = new Hexagon(cellSize, 0, 0);
 	var horizOffset = h.getH()*2+h.getA()*2;
 	var verticOffset = h.getO();
 	var evenLineOffset = h.getH()+h.getA();
 
+	// Create the grid in memory
 	for(var i = 0; i < gridHeight; i++) {
 		grid[i] = new Array();
 		for(var j = 0; j < gridWidth; j++) {
-			if (i%2 == 0) {
+			if (i%2 == 0) { // Offset every other row to give tessallation
 				grid[i][j] = new Hexagon(cellSize, (j*horizOffset+evenLineOffset)+left, ((i+1)*verticOffset)+top);
 			} else {
 				grid[i][j] = new Hexagon(cellSize, (j*horizOffset)+left, ((i+1)*verticOffset)+top);
@@ -45,6 +47,7 @@ function Hexcellent(aCellSize, aWidth, aHeight, aLeft, aTop) {
 		}
 	}
 	
+	// Given a 2D drawing context on an HTML5 <canvas> tag, draw the grid
 	this.draw = function(context) {
 		for(var i = 0; i < gridHeight; i++) {
 			for(var j = 0; j < gridWidth; j++) {

@@ -22,8 +22,10 @@
  * @author Matthew Delaney
  */
 function Hexagon(aSize, anX, aY) {
-	var TANSIXTY = Math.tan(2*Math.PI/360*60);
-	var size = aSize;
+	// The instance variables a, h and o correspond respectively to the adjacent side, hypotenuse and opposite side
+	// of the right-angled triangle at the top-left of the hexagon
+	var TANSIXTY = Math.tan(2*Math.PI/360*60); // Precalculate this for efficiency's sake
+	var size = aSize; // Size is the width of the hexagon
 	var x = anX;
 	var y = aY;
 	var a;
@@ -82,6 +84,7 @@ function Hexagon(aSize, anX, aY) {
 		y = aY;
 	}
 	
+	// Given a 2D drawing context on an HTML5 <canvas> tag, draw this Hexagon
 	this.draw = function(context) {
 				context.beginPath();
 				context.moveTo(x, y);
