@@ -22,6 +22,15 @@
  * @author Matthew Delaney
  */
 function Hexagon(aSize, anX, aY) {
+	// Throw exception on any invalid parameter
+	if (aSize < 0) {
+		throw new RangeError("Size cannot be negative!");
+	} else if (anX < 0) {
+		throw new RangeError("X-coordinate cannot be negative!");
+	} else if (aY < 0) {
+		throw new RangeError("Y-coordinate cannot be negative!");
+	}
+	
 	// The instance variables a, h and o correspond respectively to the adjacent side, hypotenuse and opposite side
 	// of the right-angled triangle at the top-left of the hexagon
 	var TANSIXTY = Math.tan(2*Math.PI/360*60); // Precalculate this for efficiency's sake
